@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>The Me Before You / The Me After You · In Your Corner💜✨</title>
+<meta name="theme-color" content="#E9E3DD">
+<link rel="preload" href="lora.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="caveat.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:'Lora';src:url(lora.woff2) format('woff2');font-weight:400 700;font-display:swap}
+@font-face{font-family:'Lora';src:url(lora-italic.woff2) format('woff2');font-style:italic;font-weight:400 700;font-display:swap}
+@font-face{font-family:'Nunito';src:url(nunito.woff2) format('woff2');font-weight:200 900;font-display:swap}
+@font-face{font-family:'Caveat';src:url(caveat.woff2) format('woff2');font-weight:400 700;font-display:swap}
+@font-face{font-family:'Courier Prime';src:url(courier.woff2) format('woff2');font-weight:400;font-display:swap}
+:root{
+  --emoji:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji';
+  --serif:'Lora',Georgia,serif,var(--emoji);--round:'Nunito','Segoe UI',system-ui,sans-serif,var(--emoji);
+  --hand:'Caveat','Segoe Script',cursive,var(--emoji);--type:'Courier Prime','Courier New',monospace,var(--emoji);
+  --bg:#E9E3DD;--ink:#3E3542;--accent:#6E55A8;--hl:#7A5BA8;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+html{background:var(--bg);-webkit-text-size-adjust:100%}
+body{margin:0;overflow:hidden;color:var(--ink);font:400 19px/1.5 var(--serif);background:var(--bg);transition:background-color 1.400s ease,color 1.400s ease}
+[hidden]{display:none!important}
+h1,h2,p{margin:0;padding:0;font:inherit}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+img{display:block;max-width:100%}
+:focus-visible{outline:2.500px solid var(--accent);outline-offset:3px;border-radius:5px}
+
+/* ---------- the film: soft light, grain, a slow drift ---------- */
+#light{position:fixed;inset:-10%;z-index:0;pointer-events:none;background:radial-gradient(ellipse 60% 45% at var(--lx,25%) var(--ly,15%),var(--l1,rgba(255,255,255,.35)),transparent 70%),radial-gradient(ellipse 55% 45% at 85% 90%,var(--l2,rgba(190,180,200,.25)),transparent 70%);transition:background 1.600s ease;animation:drift 22s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(3%,-2%) scale(1.04)}}
+#vig{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 90% 80% at 50% 50%,transparent 55%,rgba(40,30,40,.16))}
+#grain{position:fixed;inset:0;z-index:30;opacity:.06;pointer-events:none}
+
+/* ---------- a scene = one page of the letter ---------- */
+#film{position:fixed;inset:0;z-index:2}
+.scene{position:absolute;inset:0;display:flex;overflow-y:auto;padding:max(68px,calc(env(safe-area-inset-top) + 56px)) 26px max(96px,calc(env(safe-area-inset-bottom) + 84px));opacity:0;visibility:hidden;transition:opacity .9s ease,visibility 0s .9s}
+.scene.on{opacity:1;visibility:visible;transition:opacity 1s ease .25s,visibility 0s}
+.scene.on .page{animation:settle 1.600s cubic-bezier(.2,.7,.2,1) .2s both}
+@keyframes settle{from{transform:scale(1.035);filter:blur(2px)}}
+.page{width:100%;max-width:620px;margin:auto}
+.scene.paperish .page{padding:30px 26px 32px;border-radius:4px;background:rgba(255,253,248,.82);box-shadow:0 18px 50px rgba(60,40,60,.14),inset 0 0 60px rgba(150,120,90,.08)}
+
+.no{display:block;margin-bottom:22px;font:400 12px/1 var(--type);letter-spacing:.24em;color:var(--hl);opacity:.75}
+.t{font:500 clamp(32px,8.800vw,54px)/1.1 var(--serif);font-style:italic;letter-spacing:-.015em;text-wrap:balance}
+.t.huge{font-size:clamp(40px,11vw,72px)}
+.l{font:400 clamp(20px,5.300vw,25px)/1.42 var(--serif);text-wrap:pretty}
+.l+.l{margin-top:12px}
+.t+.l,.l.gap{margin-top:26px}
+.l.strong{font-weight:600}
+.h{margin-top:22px;font:700 clamp(25px,6.800vw,32px)/1.15 var(--hand);color:var(--hl)}
+.big{margin-top:26px;font:600 clamp(28px,7.800vw,44px)/1.14 var(--serif);color:var(--hl);text-wrap:balance}
+.glowcard{margin-top:28px;padding:24px 20px;border-radius:16px;background:linear-gradient(135deg,rgba(255,226,204,.92),rgba(235,221,251,.92));box-shadow:0 14px 34px rgba(200,120,110,.2);font:600 clamp(26px,7.200vw,38px)/1.15 var(--serif);color:#5A2F55;text-align:center;text-wrap:balance}
+.shortl{font:500 clamp(19px,5vw,23px)/1.34 var(--serif)}
+.shortl+.shortl{margin-top:2px}
+
+/* a little fanned pile of old posts, just to look at */
+.fan{position:relative;height:190px;margin-top:30px}
+.pc{position:absolute;left:50%;top:10px;width:110px;margin-left:-55px;padding:4px;background:#F4F2EF;box-shadow:0 6px 14px rgba(40,30,40,.2);rotate:var(--r);transform-origin:50% 130%}
+.pc img{width:100%;height:150px;object-fit:contain;background:#111;filter:grayscale(.85);opacity:.85}
+
+/* a little chapter: a few old posts, each with her notes */
+.ch{display:grid;gap:20px}
+.crow{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:16px;align-items:center}
+.shot.mini{position:relative;padding:5px;border:0;background:#F4F2EF;box-shadow:0 8px 18px rgba(40,30,40,.18);rotate:-1.500deg}
+.crow:nth-child(even) .shot.mini{rotate:1.500deg}
+.shot.mini img{width:100%;max-height:30vh;object-fit:contain;background:#111;filter:grayscale(.55);opacity:.92}
+.ch .date{display:block;margin-bottom:6px;font:400 11px/1.2 var(--type);letter-spacing:.08em;text-transform:uppercase;color:#8A8090}
+.cn{font:700 clamp(20px,5.400vw,24px)/1.15 var(--hand);color:var(--hl);white-space:pre-line}
+.cn.small{margin-top:6px;font:500 clamp(16px,4.300vw,18.500px)/1.35 var(--serif);color:inherit;opacity:.85}
+.cont{margin-top:12px;min-height:44px;padding:0 18px;border:0;border-radius:999px;background:#5B4380;color:#fff;font:400 14px/1 var(--type)}
+.tn .date{display:block;margin:0 0 8px;font:400 11px/1.2 var(--type);letter-spacing:.08em;text-transform:uppercase;color:#8A8090;text-align:left}
+
+/* then / now */
+.tn{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:22px;align-items:center}
+.tn .shot{position:relative;padding:6px;border:0;background:#F4F2EF;box-shadow:0 10px 24px rgba(40,30,40,.2);rotate:-2.500deg}
+.tn .shot img{width:100%;max-height:52vh;object-fit:contain;background:#111;filter:grayscale(.6);opacity:.92}
+.tn .shot::after{content:'';position:absolute;left:50%;top:-9px;width:46px;height:16px;margin-left:-23px;background:rgba(210,204,216,.85);rotate:3deg}
+.tag{display:block;margin-bottom:8px;font:400 11.500px/1.2 var(--type);letter-spacing:.18em;text-transform:uppercase;color:#8A8090}
+.nowline{font:700 clamp(30px,8.400vw,48px)/1.08 var(--hand);color:var(--hl)}
+.scene.on .nowline{animation:write 1.400s ease .9s both}
+@keyframes write{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+
+/* us */
+.us{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:24px;align-items:center}
+.us .photo{position:relative;margin:0;padding:8px 8px 26px;background:#fff;box-shadow:0 14px 34px rgba(60,40,60,.22);rotate:-3deg}
+.us .photo img{width:100%;height:auto}
+.us .photo::after{content:'';position:absolute;left:50%;top:-10px;width:56px;height:18px;margin-left:-28px;background:rgba(201,178,242,.85);rotate:4deg}
+
+/* the annoying list */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.chip{padding:9px 14px 10px;border-radius:14px;background:#fff;font:800 clamp(15.500px,4.200vw,18px)/1.25 var(--round);color:#4A3060;box-shadow:0 6px 14px rgba(120,70,90,.14);rotate:var(--r)}
+.chip:nth-child(3n+1){background:#FFE9C7}.chip:nth-child(3n+2){background:#EADFFB}.chip:nth-child(3n){background:#FFDDE3}
+.scene.on .chip{animation:chip .7s cubic-bezier(.3,1.700,.5,1) var(--d) both}
+@keyframes chip{from{opacity:0;transform:scale(.4) rotate(-10deg)}}
+.chaosT{margin-top:16px;font:900 clamp(28px,7.600vw,42px)/1.1 var(--round);color:#5B3F80;text-wrap:balance}
+.scene.on .chaosT{animation:wobble 1s ease 1 .4s}
+@keyframes wobble{20%{transform:rotate(-2.500deg)}40%{transform:rotate(2deg)}60%{transform:rotate(-1.500deg)}80%{transform:rotate(1deg)}}
+
+/* past me → present me */
+.pairs{margin-top:22px}
+.ph,.pr{display:grid;grid-template-columns:1fr 46px 1fr;align-items:center;gap:6px}
+.ph{margin-bottom:8px;font:400 11.500px/1 var(--type);letter-spacing:.16em;color:#8A7F8C}
+.ph span:last-child{color:#B5652F;text-align:right}
+.pr{padding:13px 0;border-top:1px dashed rgba(120,100,120,.3)}
+.pr .was{font:italic 400 clamp(16.500px,4.400vw,20px)/1.3 var(--serif);color:#8A8090}
+.pr .is{font:800 clamp(17px,4.600vw,21px)/1.25 var(--round);color:#B5562E;text-align:right}
+.pr i{display:block;height:2px;background:linear-gradient(90deg,#C9C0CB,#F0A974);transform-origin:left;transform:scaleX(0);position:relative}
+.pr i::after{content:'';position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid #F0A974;border-right:0}
+.scene.on .pr i{animation:grow .8s ease var(--d) both}
+@keyframes grow{to{transform:none}}
+
+/* the letter's sign-off */
+.love{margin-top:22px;font:700 clamp(38px,10vw,58px)/1.02 var(--hand);color:#A1386A;text-align:center}
+.forever{margin-top:26px;font:900 clamp(26px,7.200vw,40px)/1.12 var(--round);color:#5B3F80;text-align:center;text-wrap:balance}
+
+/* the last scene */
+.final{text-align:center}
+.final .note{display:inline-block;padding:9px 18px 11px;background:#FFF6DE;font:700 clamp(26px,6.800vw,32px)/1 var(--hand);color:#6B4A7E;rotate:-2deg;box-shadow:0 6px 14px rgba(120,80,40,.15)}
+.final .ll{margin-top:18px;font:500 clamp(24px,6.400vw,32px)/1.3 var(--serif)}
+.final .ll+.ll{margin-top:6px}
+.final .bday{margin-top:28px;font:700 clamp(25px,6.600vw,32px)/1.15 var(--hand);color:#A1386A}
+.final .done{margin-top:40px;font:400 12.500px/1 var(--type);letter-spacing:.24em;color:#9A8B80}
+.final .see{margin-top:12px;font:600 clamp(34px,9vw,56px)/1.08 var(--serif);font-style:italic;color:#5B3F80}
+.scene.on .final .ll,.scene.on .final .bday,.scene.on .final .done,.scene.on .final .see{animation:soft 1.200s ease var(--d) both}
+@keyframes soft{from{opacity:0}}
+
+/* the opening note */
+.open .pw{margin-top:24px}
+.open .pw label{display:block;margin-bottom:7px;font:400 12.500px/1.3 var(--type);letter-spacing:.06em;color:#7E7683}
+#pass{display:block;width:100%;max-width:340px;height:50px;padding:0 15px;border:1.500px solid #CFC3E0;border-radius:10px;background:#FFFDF8;color:var(--ink);font:400 18px/1 var(--serif);outline:0}
+#pass:focus{border-color:var(--accent)}
+#passMsg{min-height:22px;margin-top:8px;font:700 21px/1.1 var(--hand);color:var(--accent)}
+#gentle{display:inline-block;min-height:52px;margin-top:6px;padding:0 24px;border:0;border-radius:999px;background:#5B4380;color:#FFF9EE;font:400 15px/1.2 var(--type);box-shadow:0 8px 20px rgba(59,43,82,.22)}
+.caps{font:800 clamp(16.500px,4.300vw,19px)/1.4 var(--round)!important;letter-spacing:.01em;color:#5B3F80}
+.tight{margin-top:0!important}
+.shake{animation:shake .38s ease}
+@keyframes shake{25%{transform:translateX(-6px)}60%{transform:translateX(5px)}85%{transform:translateX(-2px)}}
+
+/* ---------- moving through it ---------- */
+#nav{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 16px max(14px,env(safe-area-inset-bottom));pointer-events:none}
+#nav{padding-top:26px;background:linear-gradient(rgba(0,0,0,0),var(--bg) 55%);transition:background 1.400s ease}
+#nav>*{pointer-events:auto}
+#prev,#next{width:50px;height:50px;border:0;border-radius:50%;background:rgba(255,253,248,.85);color:#4A3A5C;font:600 22px/1 var(--round);box-shadow:0 6px 16px rgba(60,40,60,.14)}
+#next{background:#5B4380;color:#fff}
+#prev:disabled{opacity:0;pointer-events:none}
+#mid{display:flex;flex-direction:column;align-items:center;gap:7px;min-width:0}
+#dots{display:flex;gap:4px}
+#dots i{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.22;transition:opacity .4s,transform .4s}
+#dots i.on{opacity:.8;transform:scale(1.4)}
+#hint{font:600 18px/1 var(--hand);opacity:.7;white-space:nowrap}
+/* "skip" lives up in the top corner, away from "tap to continue", and looks like a different kind of button */
+#skip{position:fixed;left:max(12px,env(safe-area-inset-left));top:max(12px,env(safe-area-inset-top));display:flex;align-items:center;gap:7px;min-height:40px;padding:0 15px 0 12px;border:0;border-radius:999px;background:linear-gradient(135deg,#FFD9B8,#E3CFFF);color:#4A2F5E;font:800 13.500px/1 var(--round);box-shadow:0 6px 16px rgba(120,80,110,.22)}
+#skip::before{content:'☀';font-size:15px;line-height:1}
+#skip:hover{filter:brightness(1.05)}
+#nav.hidden{display:none}
+
+#zoom{position:fixed;inset:0;z-index:40;display:flex;flex-direction:column;align-items:center;overflow-y:auto;padding:58px 12px 24px;background:rgba(28,24,30,.9);color:#EEE}
+#zoom img{width:auto;max-width:min(100%,540px);height:auto;margin:0 auto}
+#zoom p{margin-top:12px;font:400 12.500px/1.3 var(--type);letter-spacing:.06em;color:#BDB4C3}
+#zoomX{position:fixed;right:12px;top:12px;width:44px;height:44px;border:0;border-radius:50%;background:#fff;color:#3F3842;font:600 22px/1 var(--round)}
+
+#mus{position:fixed;right:max(12px,env(safe-area-inset-right));top:max(12px,env(safe-area-inset-top));z-index:25;display:flex;align-items:center;justify-content:center;gap:2px;width:40px;height:40px;padding:0;border:1.200px solid rgba(91,67,128,.3);border-radius:50%;background:rgba(255,253,248,.8);color:#5B4380}
+#mus svg{width:14px;height:14px}
+#mus i{display:none;width:3px;height:13px;background:#5B4380;border-radius:2px;transform-origin:bottom;animation:bar 1.3s ease-in-out infinite}
+#mus i:nth-child(3){animation-delay:-.45s}#mus i:nth-child(4){animation-delay:-.85s}
+#mus.on svg{display:none}#mus.on i{display:block}
+@keyframes bar{50%{transform:scaleY(.4)}}
+
+@media (max-width:520px){
+  .tn,.us{grid-template-columns:1fr;gap:18px}
+  .tn .shot{width:68%;margin:0 auto}
+  .tn .shot img{max-height:38vh}
+  .us .photo{width:62%;margin:0 auto}
+  .crow{grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:12px}
+  .shot.mini img{max-height:24vh}
+}
+@media (max-height:520px){.tn .shot img{max-height:60vh}}
+@media (prefers-reduced-motion:reduce){
+  #light,.scene.on .page,.scene.on .chip,.scene.on .chaosT,.scene.on .pr i,.scene.on .nowline,.scene.on .final *{animation:none!important}
+  .pr i{transform:none}
+  .scene,.scene.on{transition:opacity .4s ease}
+}
+</style>
+</head>
+<body>
+<div id="light" aria-hidden="true"></div>
+<div id="vig" aria-hidden="true"></div>
+<main id="film" aria-live="polite"></main>
+<nav id="nav" class="hidden" aria-label="scenes">
+  <button id="prev" type="button" aria-label="previous">‹</button>
+  <div id="mid"><div id="dots" aria-hidden="true"></div><span id="hint" aria-hidden="true"></span><button id="skip" type="button" hidden></button></div>
+  <button id="next" type="button" aria-label="next">›</button>
+</nav>
+<div id="zoom" hidden role="dialog" aria-modal="true" aria-label="old post, bigger"><button id="zoomX" type="button" aria-label="Close">×</button><img id="zoomImg" alt=""><p id="zoomCap"></p></div>
+<div id="grain" aria-hidden="true"></div>
+
+<audio id="song" src="song.mp3" preload="auto" loop></audio>
+<button id="mus" type="button" hidden aria-pressed="false" aria-label="Play music">
+  <svg viewBox="0 0 18 18" aria-hidden="true"><path d="M5 2.500v13L15.500 9z" fill="currentColor"/></svg><i></i><i></i><i></i>
+</button>
+
+<script src="story.js"></script>
+<script>
+/* =====================================================================
+   DAY 31 SETTINGS.
+
+   DAY31_PASSWORD: the word he types on the first page. Capital letters
+   and stray spaces don't matter. This page has no server, so it's a gate
+   for the experience, not real security: keep the link private.
+
+   MUSIC: drop your song in this folder named song.mp3. It only starts
+   when he unlocks, and the round button pauses it.
+
+   WORDS, SCREENSHOTS and the PHOTO: all in story.js. Pictures in posts/.
+   ===================================================================== */
+const DAY31_PASSWORD = 'thank-you';
+
+(() => {
+const D = window.DAY31, U = D.ui;
+const $ = s => document.querySelector(s);
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const norm = s => s.trim().toLowerCase();
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const two = n => String(n).padStart(2, '0');
+
+/* ---------- film grain ---------- */
+(() => {
+  const c = document.createElement('canvas'); c.width = c.height = 150;
+  const x = c.getContext('2d'), d = x.createImageData(150, 150);
+  for (let i = 0; i < d.data.length; i += 4) { const v = Math.random() > .5 ? 255 : 40; d.data[i] = d.data[i + 1] = d.data[i + 2] = v; d.data[i + 3] = Math.random() * 120; }
+  x.putImageData(d, 0, 0);
+  $('#grain').style.backgroundImage = `url(${c.toDataURL()})`;
+})();
+
+/* ---------- the colour of each scene: grey and quiet, then slowly warm ---------- */
+const GRADE = {
+  open:  ['#EEE7E0', '#3E3542', '#6E55A8', 'rgba(255,240,225,.6)', 'rgba(200,185,225,.35)'],
+  past:  ['#D9D7DC', '#3A3740', '#6A6178', 'rgba(255,255,255,.35)', 'rgba(150,145,165,.3)'],
+  past2: ['#D3D1D7', '#3A3740', '#6A6178', 'rgba(255,255,255,.3)', 'rgba(140,135,160,.3)'],
+  turn:  ['#E6DCD8', '#3E3542', '#7A5BA8', 'rgba(255,220,195,.5)', 'rgba(190,170,220,.35)'],
+  spark: ['#F6E6D8', '#43303F', '#8A4F7A', 'rgba(255,205,160,.7)', 'rgba(220,190,245,.45)'],
+  warm:  ['#FCEDE2', '#46303F', '#7A5BA8', 'rgba(255,200,170,.75)', 'rgba(215,190,255,.5)'],
+  pink:  ['#FCE6E6', '#4A2F45', '#A1386A', 'rgba(255,205,185,.7)', 'rgba(220,195,255,.5)'],
+  sun:   ['#FFF2D6', '#47305A', '#5B3F80', 'rgba(255,215,150,.8)', 'rgba(255,190,210,.5)'],
+  lav:   ['#F2EAFC', '#46305A', '#5B3F80', 'rgba(255,215,190,.6)', 'rgba(205,180,255,.55)'],
+  end:   ['#FFF5EA', '#4A3A5C', '#5B3F80', 'rgba(255,214,184,.8)', 'rgba(222,205,255,.55)'],
+};
+function grade(g) {
+  const v = GRADE[g], r = document.documentElement.style, b = document.body.style;
+  r.setProperty('--bg', v[0]); b.color = v[1]; r.setProperty('--hl', v[2]);
+  r.setProperty('--l1', v[3]); r.setProperty('--l2', v[4]);
+  document.querySelector('meta[name=theme-color]').content = v[0];
+}
+
+/* ---------- building the scenes ---------- */
+const L = (t, c = '') => `<p class="l ${c}">${esc(t)}</p>`;
+const O = D.opening, P = D.part1, S = D.spark, N = D.now, Y = D.you, C = D.chaos, Q = D.so, T = D.thanks, F = D.last;
+const posts = D.posts.filter(x => x.file), specials = posts.filter(x => x.now);
+const scenes = [];
+const add = (g, html, opts = {}) => scenes.push({ g, html, ...opts });
+
+add('open', `<div class="page open"><span class="no">${esc(O.day)}</span><h1 class="t" id="openT" tabindex="-1">${esc(O.title)}</h1>${O.lines.map((l, i) => L(l, (l === l.toUpperCase() ? 'caps ' : '') + (i >= 5 && i <= 6 ? 'tight' : ''))).join('')}<p class="h">${esc(O.playful)}</p><form class="pw" id="passForm" novalidate><label for="pass">our secret word for today</label><input id="pass" type="password" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" aria-describedby="passMsg"><p id="passMsg" role="status"></p><button id="gentle" type="submit">${esc(O.button)}</button></form></div>`, { paper: true, locked: true });
+add('past', `<div class="page"><h2 class="t huge">${esc(P.title)}</h2></div>`, { past: true });
+add('past', `<div class="page">${P.lines.map((l, i) => L(l, i === 2 ? 'strong gap' : '')).join('')}</div>`, { past: true });
+add('past2', `<div class="page">${D.says.map(l => L(l)).join('')}</div>`, { past: true });
+add('past', `<div class="page">${P.found.map(l => L(l)).join('')}<p class="h">${esc(P.joke)}</p><div class="fan" aria-hidden="true">${posts.slice(0, 5).map((x, i) => `<span class="pc" style="--r:${[-12, -5, 1, 7, 13][i]}deg"><img src="posts/${esc(x.file)}" alt=""></span>`).join('')}</div></div>`, { past: true });
+/* the old posts, in little chapters, oldest first */
+const shotBtn = (x, cls = '') => `<button type="button" class="shot ${cls}" data-i="${D.posts.indexOf(x)}" aria-label="Old post from ${esc(x.date)}, see it bigger"><img src="posts/${esc(x.file)}" alt="Screenshot of an old post from ${esc(x.date)}" loading="lazy"></button>`;
+const GRADES = { 1: 'past', 2: 'past', 4: 'past', 6: 'past2', 8: 'past2', 9: 'past2', 10: 'past2', 12: 'past2', 13: 'turn' };
+[...new Set(posts.map(x => x.scene))].forEach(n => {
+  const group = posts.filter(x => x.scene === n);
+  if (group.length === 1 && group[0].now) {
+    const x = group[0];
+    add('turn', `<div class="page tn">${shotBtn(x)}<div><span class="date">${esc(x.date)} · ${esc(x.where)}</span><span class="tag">${esc(U.then)} → ${esc(U.now)}</span><p class="nowline">${esc(x.now)}</p></div></div>`, { past: true });
+    return;
+  }
+  add(GRADES[n] || 'past', `<div class="page ch">${group.map(x => `<div class="crow">${shotBtn(x, 'mini')}<div><span class="date">${esc(x.date)} · ${esc(x.where)}</span>${(x.notes || []).map((t, k) => `<p class="cn${k ? ' small' : ''}">${esc(t)}</p>`).join('')}${x.button ? `<button type="button" class="cont">${esc(x.button)}</button>` : ''}</div></div>`).join('')}</div>`, { past: true });
+});
+add('turn', `<div class="page us"><figure class="photo"><img src="${esc(U.photo)}" alt="${esc(U.photoAlt)}"></figure><div><h2 class="t">${esc(D.us.title)}</h2>${D.us.lines.map(l => L(l)).join('')}<p class="h">${esc(D.us.but)}</p></div></div>`);
+add('spark', `<div class="page"><h2 class="t">${esc(S.lines[0])}</h2>${S.list.map((l, i) => L(l, i === 0 ? 'gap' : '')).join('')}${L(S.idk, 'gap')}<p class="big">${esc(S.there)}</p></div>`);
+add('spark', `<div class="page">${S.not.map(l => L(l)).join('')}<p class="glowcard">${esc(S.enough)}</p></div>`);
+add('warm', `<div class="page"><h2 class="t">${esc(N.title)}</h2>${N.lines.map(l => L(l, 'strong')).join('')}${N.still.map((l, i) => L(l, i === 0 ? 'gap' : '')).join('')}<p class="h">${esc(N.joke)}</p>${L(N.will, 'gap strong')}</div>`);
+add('pink', `<div class="page">${L(Y.lead)}<p class="big">${esc(Y.title)}</p>${Y.not.map((l, i) => L(l, i === 0 ? 'gap' : '')).join('')}${Y.list.map((l, i) => `<p class="shortl"${i === 0 ? ' style="margin-top:22px"' : ''}>${esc(l)}</p>`).join('')}</div>`);
+add('sun', `<div class="page">${L(C.lead)}<h2 class="chaosT">${esc(C.title)}</h2><div class="chips">${C.list.map((l, i) => `<p class="chip" style="--r:${[-3, 2.500, -1.500, 3, -2.500, 1.500, -1][i % 7]}deg;--d:${(.5 + i * .14).toFixed(2)}s">${esc(l)}</p>`).join('')}</div></div>`);
+add('lav', `<div class="page"><h2 class="t">${esc(Q.title)}</h2>${L(Q.before)}${L(Q.after)}<div class="pairs"><p class="ph" aria-hidden="true"><span>${esc(Q.labels[0])}</span><span></span><span>${esc(Q.labels[1])}</span></p>${Q.pairs.map((s, i) => { const [a, b] = s.split('→').map(t => t.trim().replace(/^“|”$/g, '')); return `<p class="pr" aria-label="${esc(s)}" style="--d:${(.6 + i * .2).toFixed(2)}s"><span class="was" aria-hidden="true">${esc(a)}</span><i aria-hidden="true"></i><span class="is" aria-hidden="true">${esc(b)}</span></p>`; }).join('')}</div>${Q.future.map((l, i) => L(l, i === 0 ? 'gap' : 'strong')).join('')}</div>`);
+add('warm', `<div class="page">${T.lines.map(l => `<p class="shortl">${esc(l)}</p>`).join('')}<p class="love">${esc(T.love)}</p>${T.still.map((l, i) => `<p class="shortl"${i === 0 ? ' style="margin-top:18px"' : ''}>${esc(l)}</p>`).join('')}<p class="forever">${esc(T.forever)}</p></div>`, { paper: true });
+add('end', `<div class="page final"><p class="note">${esc(F.note)}</p>${F.lines.map((l, i) => `<p class="ll" style="--d:${(1 + i * 1.3).toFixed(1)}s">${esc(l)}</p>`).join('')}<p class="bday" style="--d:5.2s">${esc(F.birthday)}</p><p class="done" style="--d:6.8s">${esc(F.done)}</p><p class="see" style="--d:7.6s">${esc(F.see)}</p></div>`, { last: true });
+
+const film = $('#film');
+film.innerHTML = scenes.map((s, i) => `<section class="scene${s.paper ? ' paperish' : ''}" data-i="${i}" aria-hidden="true">${s.html}</section>`).join('');
+const els = [...film.children];
+$('#dots').innerHTML = scenes.slice(1).map(() => '<i></i>').join('');
+$('#skip').textContent = D.skip;
+const firstWarm = scenes.findIndex(s => !s.past && !s.locked);
+
+/* ---------- moving between scenes ---------- */
+let at = -1, unlocked = false;
+function go(i) {
+  if (i < 0 || i >= scenes.length || i === at) return;
+  if (at >= 0) { els[at].classList.remove('on'); els[at].setAttribute('aria-hidden', 'true'); }
+  at = i;
+  const el = els[i];
+  el.classList.add('on'); el.removeAttribute('aria-hidden'); el.scrollTop = 0;
+  grade(scenes[i].g);
+  $('#nav').classList.toggle('hidden', !unlocked);
+  [...$('#dots').children].forEach((d, k) => d.classList.toggle('on', k === i - 1));
+  $('#prev').disabled = i <= 1;
+  $('#next').hidden = i === scenes.length - 1;
+  $('#hint').textContent = i === 1 ? U.tapHint : '';
+  $('#skip').hidden = !scenes[i].past || i === firstWarm - 1;
+  const lx = 20 + (i * 37) % 60; document.documentElement.style.setProperty('--lx', lx + '%');
+}
+$('#next').addEventListener('click', () => go(at + 1));
+$('#prev').addEventListener('click', () => go(at - 1));
+$('#skip').addEventListener('click', () => go(firstWarm));
+/* tap the page itself: right side forward, left side back */
+film.addEventListener('click', e => {
+  if (e.target.closest('.cont')) { go(at + 1); return; }
+  if (!unlocked || e.target.closest('button,input,form,a')) return;
+  (e.clientX < innerWidth * .3 ? go(at - 1) : go(at + 1));
+});
+addEventListener('keydown', e => {
+  if (!$('#zoom').hidden) { if (e.key === 'Escape') closeZoom(); return; }
+  if (!unlocked) return;
+  if (e.key === 'ArrowRight' || e.key === 'PageDown') go(at + 1);
+  if (e.key === 'ArrowLeft' || e.key === 'PageUp') go(at - 1);
+});
+
+/* ---------- an old post, bigger, only if he wants ---------- */
+const zoom = $('#zoom');
+let zoomFrom = null;
+film.addEventListener('click', e => {
+  const b = e.target.closest('[data-i]');
+  if (!b || b.classList.contains('scene')) return;
+  const x = D.posts[+b.dataset.i];
+  zoomFrom = b;
+  $('#zoomImg').src = 'posts/' + x.file; $('#zoomImg').alt = `Screenshot of an old post from ${x.date}`;
+  $('#zoomCap').textContent = `${x.date} · ${x.where}`;
+  zoom.hidden = false; zoom.scrollTop = 0; $('#zoomX').focus();
+});
+function closeZoom() { zoom.hidden = true; zoomFrom && zoomFrom.focus({ preventScroll: true }); }
+$('#zoomX').addEventListener('click', closeZoom);
+zoom.addEventListener('click', e => { if (e.target === zoom) closeZoom(); });
+
+/* ---------- the first page and the password ---------- */
+go(0);
+const pass = $('#pass'), passMsg = $('#passMsg');
+const NOPES = ['hmm, that’s not it, Ammu. try again? 🥹', 'nope. nice try though, sir. 😭', 'still no. take your time. 💜'];
+let nopes = 0;
+$('#passForm').addEventListener('submit', e => {
+  e.preventDefault();
+  if (unlocked) return;
+  if (!pass.value.trim()) { passMsg.textContent = 'you have to type something first, bro. 😭'; pass.focus(); return; }
+  if (norm(pass.value) !== norm(DAY31_PASSWORD)) {
+    passMsg.textContent = NOPES[nopes++ % NOPES.length];
+    pass.classList.remove('shake'); void pass.offsetWidth; pass.classList.add('shake'); pass.select();
+    return;
+  }
+  unlocked = true;
+  pass.blur();
+  playSong();                                            // only after his tap
+  go(1);
+  $('#next').focus({ preventScroll: true });
+});
+
+/* ---------- music: only after he unlocks, with a pause button ---------- */
+const song = $('#song'), mus = $('#mus');
+let wantSong = false, fadeTimer = 0, bad = false, needFade = false;
+const VOL = .45;
+function fadeIn() {
+  clearInterval(fadeTimer);
+  const t0 = Date.now();
+  song.volume = 0;
+  fadeTimer = setInterval(() => { const p = Math.max(0, Math.min(1, (Date.now() - t0) / 3000)); song.volume = VOL * p; if (p >= 1) clearInterval(fadeTimer); }, 60);
+}
+function drawMus(on) { mus.classList.toggle('on', on); mus.setAttribute('aria-pressed', String(on)); mus.setAttribute('aria-label', on ? 'Pause music' : 'Play music'); }
+function playSong() { if (bad) return; wantSong = true; needFade = true; song.volume = 0; song.play().catch(() => {}); }
+song.addEventListener('error', () => { bad = true; wantSong = false; mus.hidden = true; });
+song.addEventListener('playing', () => { mus.hidden = false; drawMus(true); if (needFade) { needFade = false; fadeIn(); } });
+song.addEventListener('pause', () => drawMus(false));
+mus.addEventListener('click', () => { wantSong = song.paused; if (wantSong) { if (song.volume === 0) song.volume = VOL; song.play().catch(() => {}); } else song.pause(); });
+document.addEventListener('visibilitychange', () => { if (document.hidden) song.pause(); else if (wantSong && !bad) song.play().catch(() => {}); });
+})();
+</script>
+</body>
+</html>
